@@ -1,0 +1,8 @@
+{
+  "ids": {
+    "Admin": 1
+  },
+  "models": {
+    "1": "{\"name\":\"Admin\",\"email\":\"admin@test.com\",\"id\":1, \"password\":\"testing123\"}"
+  }
+}
