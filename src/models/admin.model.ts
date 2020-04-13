@@ -4,9 +4,8 @@ import {Entity, model, property} from '@loopback/repository';
 export class Admin extends Entity {
   @property({
     type: 'number',
+    generated: true,
     id: true,
-    generated: false,
-    required: true,
   })
   id: number;
 

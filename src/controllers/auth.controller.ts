@@ -1,12 +1,23 @@
+import {authenticate, TokenService} from '@loopback/authentication';
+import {inject} from '@loopback/context';
 import {Count, CountSchema, Filter, FilterExcludingWhere, repository, Where} from '@loopback/repository';
 import {del, get, getModelSchemaRef, param, patch, post, put, requestBody} from '@loopback/rest';
+import {PasswordHasherBindings, TokenServiceBindings, UserServiceBindings} from '../keys';
 import {Admin} from '../models';
-import {AdminRepository} from '../repositories';
+import {AdminRepository, Credentials} from '../repositories';
+import {AdminService} from '../services/admin-service';
+import {PasswordHasher} from '../services/hash.password.bcryptjs';
 
 export class AuthController {
   constructor(
     @repository(AdminRepository)
     public adminRepository: AdminRepository,
+    @inject(TokenServiceBindings.TOKEN_SERVICE)
+    public jwtService: TokenService,
+    @inject(PasswordHasherBindings.PASSWORD_HASHER)
+    public passwordHasher: PasswordHasher,
+    @inject(UserServiceBindings.USER_SERVICE)
+    public userService: AdminService,
   ) {}
 
   @post('/admin', {
@@ -28,9 +39,63 @@ export class AuthController {
         },
       },
     })
-    admin: Omit<Admin, 'id'>,
+    admin: Admin,
   ): Promise<Admin> {
-    return this.adminRepository.create(admin);
+
+    // encrypt the password
+    admin.password = await this.passwordHasher.hashPassword(
+      admin.password,
+    );
+
+    try {
+      // create the new user
+      const savedAmin = await this.adminRepository.create(admin);
+
+      return savedAmin;
+    } catch (error) {
+      throw error
+    }
+  }
+
+  @post('/admin/login', {
+    responses: {
+      '200': {
+        description: 'Authorization token',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'object',
+              properties: {
+                token: {
+                  type: 'string'
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  })
+  async login(@requestBody({
+    content: {
+      'application/json': {
+        schema: getModelSchemaRef(Admin, {
+          title: 'LoginAdmin',
+          exclude: ['id', 'name'],
+        }),
+      },
+    },
+  }) credentials: Credentials): Promise<{token: string}> {
+    // ensure the user exists, and the password is correct
+    const user = await this.userService.verifyCredentials(credentials);
+
+    // convert a User object into a UserProfile object (reduced set of properties)
+    const userProfile = this.userService.convertToUserProfile(user);
+
+    // create a JSON Web Token based on the user profile
+    const token = await this.jwtService.generateToken(userProfile);
+
+    return {token};
   }
 
   @get('/admin/count', {
@@ -62,6 +127,7 @@ export class AuthController {
       },
     },
   })
+  @authenticate('jwt')
   async find(
     @param.filter(Admin) filter?: Filter<Admin>,
   ): Promise<Admin[]> {

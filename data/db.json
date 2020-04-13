@@ -1,8 +1,10 @@
 {
   "ids": {
-    "Admin": 1
+    "Admin": 2
   },
   "models": {
-    "1": "{\"name\":\"Admin\",\"email\":\"admin@test.com\",\"id\":1, \"password\":\"testing123\"}"
+    "Admin": {
+      "1": "{\"name\":\"strasdfasdfasing\",\"email\":\"test@test.com\",\"password\":\"$2a$10$ZbIyHJI9dFu72Wy8maLycueUBb4/v7PVteg8kIbGzsqNCZqJ23LI2\",\"id\":1}"
+    }
   }
 }
