@@ -14,3 +14,15 @@ $global-link-color: #da7d02;
 @import "./node_modules/uikit/src/scss/uikit-theme.scss";
 
 // 5. Custom styles here
+.is-relative {
+  position: relative;
+}
+
+.is-absolute {
+  position: absolute;
+}
+
+.link-right {
+  position: absolute;
+  right: 0;
+}

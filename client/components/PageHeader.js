@@ -11,23 +11,30 @@ export default function PageHeader(props) {
       show: true,
     },
     Dashboard: {
-      href: "/dasboard",
-      isActive: location.pathname === "/dasboard",
+      href: "/admin/dasboard",
+      isActive: location.pathname === "/admin/dasboard",
       show: authService.isAuthenticated(),
     },
     Login: {
       href: "/auth/login",
       isActive: location.pathname.includes("auth"),
       show: !authService.isAuthenticated(),
+      pullRight: true,
+    },
+    Logout: {
+      href: "/auth/logout",
+      isActive: location.pathname.includes("auth"),
+      show: authService.isAuthenticated(),
+      pullRight: true,
     },
   }
 
-  const navBarClasses = ["uk-navbar-container"]
+  const navBarClasses = ["is-relative"]
 
   if (location.pathname.includes("admin")) {
-    navBarClasses.push("uk-background-secondary")
+    navBarClasses.push("uk-background-secondary", "uk-light")
   } else {
-    navBarClasses.push("uk-navbar-transparent")
+    navBarClasses.push("uk-navbar-container", "uk-navbar-transparent")
   }
 
   return (
@@ -41,6 +48,8 @@ export default function PageHeader(props) {
             if (!link.show) return
 
             if (link.isActive) classes.push("uk-active")
+
+            if (link.pullRight) classes.push("link-right")
 
             return (
               <li key={linkName} className={classes.join(" ")}>

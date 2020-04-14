@@ -14,6 +14,10 @@ function getToken() {
   return localStorage.getItem(TOKEN_KEY)
 }
 
+function removeToken() {
+  return localStorage.removeItem(TOKEN_KEY)
+}
+
 function checkAuth(location) {
   switch (location) {
     case "/admin":
@@ -32,5 +36,6 @@ export default {
   isAuthenticated,
   setToken,
   getToken,
+  removeToken,
   checkAuth,
 }
