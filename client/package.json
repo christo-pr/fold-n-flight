@@ -1,0 +1,26 @@
+{
+  "name": "fold-n-flight-client",
+  "version": "1.0.0",
+  "description": "Client app for fnf app",
+  "main": "index.js",
+  "keywords": [],
+  "author": "christo-pr",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rm -rf dist/",
+    "start": "parcel ./index.html",
+    "build": "npm run clean && parcel build ./index.html",
+    "deploy": "npm run build && rm ../public/* && mv dist/* ../public/"
+  },
+  "dependencies": {
+    "react": "16.12.0",
+    "react-dom": "16.12.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-react": "^7.8.3",
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.25.0"
+  }
+}
