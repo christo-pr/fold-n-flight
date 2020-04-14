@@ -16,7 +16,7 @@ function getToken() {
 
 function checkAuth(location) {
   switch (location) {
-    case "/airplanes":
+    case "/admin":
       if (isAuthenticated()) return
 
       return navigate("/auth/login")
@@ -24,7 +24,7 @@ function checkAuth(location) {
     case "/auth":
       if (!isAuthenticated()) return
 
-      return navigate("/airplanes")
+      return navigate("/admin/dashboard")
   }
 }
 

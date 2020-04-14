@@ -1,10 +1,5 @@
-import React, { useEffect } from "react"
-import { authService } from "../services"
+import React from "react"
 
-export default function Airplanes(props) {
-  useEffect(() => {
-    authService.checkAuth(props.path)
-  }, [])
-
+export default function Airplanes() {
   return <div>Airplanes</div>
 }

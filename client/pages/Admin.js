@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import { PageHeader } from "../components"
 import { authService } from "../services"
 
-export default function Auth(props) {
+export default function Admin(props) {
   useEffect(() => {
     authService.checkAuth(props.path)
   }, [])
