@@ -2,7 +2,7 @@ import { Link, useLocation } from "@reach/router"
 import React from "react"
 import { authService } from "../services"
 
-export default function PageHeader(props) {
+export default function PageHeader() {
   const location = useLocation()
   const navigationLinks = {
     Home: {
@@ -29,17 +29,12 @@ export default function PageHeader(props) {
     },
   }
 
-  const navBarClasses = ["is-relative"]
-
-  if (location.pathname.includes("admin")) {
-    navBarClasses.push("uk-background-secondary", "uk-light")
-  } else {
-    navBarClasses.push("uk-navbar-container", "uk-navbar-transparent")
-  }
-
   return (
-    <nav className={navBarClasses.join(" ")} data-uk-navbar>
-      <div className="uk-navbar-right">
+    <nav
+      className="uk-navbar-container uk-navbar-transparent uk-light is-relative"
+      data-uk-navbar
+    >
+      <div className="uk-navbar-left">
         <ul className="uk-navbar-nav">
           {Object.keys(navigationLinks).map((linkName) => {
             const classes = []
