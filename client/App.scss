@@ -1,0 +1,86 @@
+// 1. Your custom variables and variable overwrites.
+$global-link-color: #da7d02;
+
+$black-background-color: #1e1931;
+$black-background-color-2: #29334f;
+$gray-color: #9999a1;
+$strong-gray-color: #4a525a;
+$second-black-color: #24272b;
+$black-color: #000000;
+
+// 2. Import default variables and available mixins.
+// @import "./node_modules/uikit/src/scss/variables-theme.scss";
+// @import "./node_modules/uikit/src/scss/mixins-theme.scss";
+
+// 3. Your custom mixin overwrites.
+@mixin hook-card() {
+  color: #000;
+}
+
+// 4. Import UIkit.
+// @import "./node_modules/uikit/src/scss/uikit-theme.scss";
+
+// 5. Custom styles here
+html,
+body {
+  // background-color: $black-background-color;
+  background: rgb(30, 25, 49);
+  background: linear-gradient(
+    270deg,
+    $black-background-color 15%,
+    $black-background-color-2 50%,
+    $black-background-color 87%
+  );
+}
+
+p,
+span,
+a {
+  color: white;
+}
+
+.is-relative {
+  position: relative;
+}
+
+.is-absolute {
+  position: absolute;
+}
+
+.link-right {
+  position: absolute;
+  right: 0;
+}
+
+.airplanes-filter {
+  .uk-card {
+    max-width: 250px !important;
+  }
+  .uk-card-media-top {
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 140px;
+      width: 100%;
+      height: 10px;
+    }
+    &[data-banner="easy"] {
+      &::after {
+        background: green;
+      }
+    }
+
+    &[data-banner="intermediate"] {
+      &::after {
+        background: yellow;
+      }
+    }
+
+    &[data-banner="advanced"] {
+      &::after {
+        background: red;
+      }
+    }
+  }
+}
