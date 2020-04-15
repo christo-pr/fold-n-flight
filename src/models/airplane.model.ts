@@ -1,8 +1,9 @@
 import {Entity, model, property} from '@loopback/repository';
 
 enum AIRPLANE_TYPE {
-  Dart = 'dart',
-  Glidder = 'glidder'
+  Easy = 'easy',
+  Medium = 'intermediate',
+  Advanced = 'advanced',
 }
 
 @model()
@@ -16,7 +17,7 @@ export class Airplane extends Entity {
   @property({
     type: 'string',
     required: true,
-    default: AIRPLANE_TYPE.Dart,
+    default: AIRPLANE_TYPE.Easy,
   })
   type: string;
 
@@ -25,6 +26,27 @@ export class Airplane extends Entity {
     required: true,
   })
   model: string;
+
+  @property({
+    type: 'number',
+    required: false,
+    default: 5,
+  })
+  speed: number;
+
+  @property({
+    type: 'number',
+    required: false,
+    default: 5,
+  })
+  glide: number;
+
+  @property({
+    type: 'number',
+    required: false,
+    default: 5,
+  })
+  accuracy: number;
 
   @property({
     type: 'number',
