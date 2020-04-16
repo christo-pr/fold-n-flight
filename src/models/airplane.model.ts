@@ -55,7 +55,6 @@ export class Airplane extends Entity {
   })
   id?: number;
 
-
   constructor(data?: Partial<Airplane>) {
     super(data);
   }

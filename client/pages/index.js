@@ -1,4 +1,5 @@
 export { default as Admin } from "./Admin"
+export { default as AirplaneDetail } from "./AirplaneDetail"
 export { default as Airplanes } from "./Airplanes"
 export { default as Auth } from "./Auth"
 export { default as Landing } from "./Landing"

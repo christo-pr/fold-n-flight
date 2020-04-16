@@ -12,7 +12,7 @@ const verifyAsync = promisify(jwt.verify);
 export class JWTService implements TokenService {
   constructor(
     @inject(TokenServiceBindings.TOKEN_SECRET) private jwtSecret: string,
-    @inject(TokenServiceBindings.TOKEN_EXPIRES_IN) private jwtExpiresIn: string,
+    @inject(TokenServiceBindings.TOKEN_EXPIRES_IN) private jwtExpiresIn: number,
   ) {}
 
   async verifyToken(token: string): Promise<UserProfile> {
@@ -56,7 +56,7 @@ export class JWTService implements TokenService {
     let token: string;
     try {
       token = await signAsync(userProfile, this.jwtSecret, {
-        expiresIn: Number(this.jwtExpiresIn),
+        expiresIn: this.jwtExpiresIn,
       });
     } catch (error) {
       throw new HttpErrors.Unauthorized(`Error encoding token: ${error}`);

@@ -6,7 +6,7 @@ import {PasswordHasher} from './services/hash.password.bcryptjs';
 
 export namespace TokenServiceConstants {
   export const TOKEN_SECRET_VALUE = process.env.JWT_SECRET || 'myjwts3cr3t';
-  export const TOKEN_EXPIRES_IN_VALUE = process.env.JWT_EXPIRES || '600';
+  export const TOKEN_EXPIRES_IN_VALUE = process.env.JWT_EXPIRES || "1 day";
 }
 
 export namespace TokenServiceBindings {

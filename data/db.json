@@ -1,10 +1,16 @@
 {
   "ids": {
-    "Admin": 2
+    "Admin": 2,
+    "Airplane": 4
   },
   "models": {
     "Admin": {
-      "1": "{\"name\":\"strasdfasdfasing\",\"email\":\"test@test.com\",\"password\":\"$2a$10$ZbIyHJI9dFu72Wy8maLycueUBb4/v7PVteg8kIbGzsqNCZqJ23LI2\",\"id\":1}"
+      "1": "{\"name\":\"testing\",\"email\":\"test@test.com\",\"password\":\"$2a$10$/pJ5N4Bbn84.A6G2w8hRWOKs9f0Y.xKuVWTFOFd.0OIS6W9Mt1YNm\",\"id\":1}"
+    },
+    "Airplane": {
+      "1": "{\"name\":\"sdfgasdgdfsgdfg\",\"type\":\"asdfasdfadsf\",\"model\":\"asdfasdfds\",\"speed\":5,\"glide\":5,\"accuracy\":5,\"id\":1}",
+      "2": "{\"name\":\"sddddd\",\"type\":\"asdfasdfasdfgggg\",\"model\":\"fffffffffff\",\"speed\":5,\"glide\":5,\"accuracy\":5,\"id\":2}",
+      "3": "{\"name\":\"tesasdfs\",\"type\":\"dfgdgbbb\",\"model\":\"dfgdfgrtyhrtybntryn\",\"speed\":5,\"glide\":5,\"accuracy\":5,\"id\":3}"
     }
   }
 }

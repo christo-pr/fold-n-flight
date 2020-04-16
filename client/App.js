@@ -3,6 +3,7 @@ import React from "react"
 import "./App.scss"
 import {
   Admin,
+  AirplaneDetail,
   Airplanes,
   Auth,
   Landing,
@@ -23,6 +24,7 @@ function App() {
         </Auth>
         <Admin path="/admin">
           <Airplanes path="/dashboard" default />
+          <AirplaneDetail path="/airplane/:id" />
         </Admin>
       </Router>
     </>
