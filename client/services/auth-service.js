@@ -1,6 +1,7 @@
 import { navigate } from "@reach/router"
 
 const TOKEN_KEY = "fnf-token"
+const LOGIN_URL = process.env.API_URL + "/admin/login"
 
 function isAuthenticated() {
   return localStorage.getItem(TOKEN_KEY) !== null
@@ -33,6 +34,7 @@ function checkAuth(location) {
 }
 
 export default {
+  LOGIN_URL,
   isAuthenticated,
   setToken,
   getToken,
