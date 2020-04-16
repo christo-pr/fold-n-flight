@@ -34,10 +34,11 @@ export default function Airplanes() {
         <div className="uk-margin">
           <input
             className="uk-input uk-form-width-large"
-            type="text"
+            type="email"
             value={emailInput}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Email"
+            required
           />
         </div>
         <div className="uk-margin">
@@ -47,6 +48,7 @@ export default function Airplanes() {
             value={passwordInput}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
+            required
           />
         </div>
 
