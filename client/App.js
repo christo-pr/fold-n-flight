@@ -22,7 +22,7 @@ function App() {
           <Logout path="logout" />
         </Auth>
         <Admin path="/admin">
-          <Airplanes path="/dashboard" />
+          <Airplanes path="/dashboard" default />
         </Admin>
       </Router>
     </>

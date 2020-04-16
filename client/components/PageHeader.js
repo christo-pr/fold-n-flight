@@ -11,8 +11,8 @@ export default function PageHeader() {
       show: true,
     },
     Dashboard: {
-      href: "/admin/dasboard",
-      isActive: location.pathname === "/admin/dasboard",
+      href: "/admin/dashboard",
+      isActive: location.pathname.includes("/admin/dashboard"),
       show: authService.isAuthenticated(),
     },
     Login: {
