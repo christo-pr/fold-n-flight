@@ -9,22 +9,21 @@ import {
   Landing,
   Login,
   Logout,
-  Register,
 } from "./pages"
+import routes from "./routes"
 
 function App() {
   return (
     <>
       <Router>
-        <Landing path="/" default />
-        <Auth path="/auth">
-          <Login path="login" />
-          <Register path="register" />
-          <Logout path="logout" />
+        <Landing path={routes.paths.landing} default />
+        <Auth path={routes.paths.auth}>
+          <Login path={routes.paths.login} />
+          <Logout path={routes.paths.logout} />
         </Auth>
-        <Admin path="/admin">
-          <Airplanes path="/dashboard" default />
-          <AirplaneDetail path="/airplane/:id" />
+        <Admin path={routes.paths.admin}>
+          <Airplanes path={routes.paths.dashboard} default />
+          <AirplaneDetail path={routes.paths.airplane} />
         </Admin>
       </Router>
     </>

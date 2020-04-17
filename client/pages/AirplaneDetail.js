@@ -1,9 +1,9 @@
 import React from "react"
-import { useFetchAirplane } from "../hooks"
+import { useAirplaneApi } from "../hooks"
 
 export default function AirplaneDetails(props) {
   const { id } = props
-  const { airplane, loading, error } = useFetchAirplane(id)
+  const { airplane, loading, error } = useAirplaneApi(id)
 
   return (
     <div className="uk-section uk-section-muted uk-margin-large-top">
