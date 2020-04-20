@@ -9,8 +9,8 @@ export default function AirplaneDetails(props) {
     airplane
   )
 
-  const handleChange = (chunk) => {
-    setAirplane({ ...airplane, ...chunk })
+  const handleChange = (prop, value) => {
+    setAirplane({ ...airplane, [prop]: value })
   }
 
   return (

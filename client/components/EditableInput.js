@@ -39,7 +39,7 @@ export default function EditableInput(props) {
             min="0"
             max="10"
             step="1"
-            onChange={(e) => onChange({ [type]: e.target.value })}
+            onChange={(e) => onChange(type, e.target.value)}
           ></input>
         </>
       )
