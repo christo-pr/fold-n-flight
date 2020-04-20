@@ -1,5 +1,5 @@
 import React from "react"
-import { Alert, EditableInput } from "../components"
+import { Alert, EditableInput, Loading } from "../components"
 import { useAirplaneActions, useAirplaneApi } from "../hooks"
 
 export default function AirplaneDetails(props) {
@@ -24,6 +24,7 @@ export default function AirplaneDetails(props) {
             </div>
 
             <div className="uk-card uk-card-default uk-card-body uk-width-1-2 uk-text-center">
+              {loading && <Loading show />}
               {success && (
                 <Alert type="success" icon="check" message="Airplane updated" />
               )}
