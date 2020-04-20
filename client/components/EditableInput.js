@@ -12,7 +12,7 @@ export default function EditableInput(props) {
             type="text"
             className="uk-input editable-input"
             value={value}
-            onChange={(e) => onChange({ [type]: e.target.value })}
+            onChange={(e) => onChange(type, e.target.value)}
           />
           <span data-uk-icon="icon: pencil"></span>
         </>
@@ -20,10 +20,14 @@ export default function EditableInput(props) {
     case "type":
       return (
         <>
-          <select className="uk-select editable-input">
-            <option>Easy</option>
-            <option>Intermediate</option>
-            <option>Advanced</option>
+          <select
+            className="uk-select editable-input"
+            value={value}
+            onChange={(e) => onChange(type, e.target.value)}
+          >
+            <option value="easy">Easy</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="advanced">Advanced</option>
           </select>
         </>
       )
