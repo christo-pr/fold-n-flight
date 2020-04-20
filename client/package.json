@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "clean": "rm -rf dist/",
-    "start": "parcel ./index.html",
+    "start": "parcel ./index.html --no-hmr",
     "build": "npm run clean && parcel build ./index.html",
     "deploy": "npm run build && rm ../public/* && mv dist/* ../public/"
   },

@@ -1,21 +1,7 @@
-import { navigate } from "@reach/router"
 import { useEffect, useState } from "react"
-import routes from "../routes"
 import { authService } from "../services"
 
 const BASE_URL = process.env.API_URL + "/airplanes"
-
-function handleAuthenticationError(error) {
-  if (!error) return
-
-  const statusCode = error.statusCode
-
-  switch (statusCode) {
-    case 401:
-      navigate(routes.logout)
-      break
-  }
-}
 
 function useAirplaneApi(id, options = {}) {
   const [airplanes, setAirplanes] = useState([])
@@ -23,7 +9,7 @@ function useAirplaneApi(id, options = {}) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
-  const url = id ? BASE_URL + id : BASE_URL
+  const url = id ? BASE_URL + "/" + id : BASE_URL
 
   useEffect(() => {
     // Start loading state
@@ -41,7 +27,7 @@ function useAirplaneApi(id, options = {}) {
         setLoading(false)
 
         // Handle the jwt expiration.
-        handleAuthenticationError(data.error)
+        authService.handleAuthenticationError(data.error)
 
         // Set error and return
         if (data.error) {
@@ -68,6 +54,7 @@ function useAirplaneApi(id, options = {}) {
 
   return {
     airplane,
+    setAirplane,
     airplanes,
     loading,
     error,

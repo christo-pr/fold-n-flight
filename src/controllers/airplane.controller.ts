@@ -119,6 +119,11 @@ export class AirplaneController {
     responses: {
       '204': {
         description: 'Airplane PATCH success',
+        content: {
+          'application/json': {
+            schema: getModelSchemaRef(Airplane, {includeRelations: true}),
+          },
+        },
       },
     },
   })
@@ -133,14 +138,20 @@ export class AirplaneController {
       },
     })
     airplane: Airplane,
-  ): Promise<void> {
+  ): Promise<Airplane> {
     await this.airplaneRepository.updateById(id, airplane);
+    return this.airplaneRepository.findById(id);
   }
 
   @put('/airplanes/{id}', {
     responses: {
       '204': {
         description: 'Airplane PUT success',
+        content: {
+          'application/json': {
+            schema: getModelSchemaRef(Airplane, {includeRelations: true}),
+          },
+        },
       },
     },
   })
@@ -148,8 +159,9 @@ export class AirplaneController {
   async replaceById(
     @param.path.number('id') id: number,
     @requestBody() airplane: Airplane,
-  ): Promise<void> {
+  ): Promise<Airplane> {
     await this.airplaneRepository.replaceById(id, airplane);
+    return this.airplaneRepository.findById(id);
   }
 
   @del('/airplanes/{id}', {

@@ -1,4 +1,5 @@
 import { navigate } from "@reach/router"
+import routes from "../routes"
 
 const TOKEN_KEY = "fnf-token"
 const LOGIN_URL = process.env.API_URL + "/admin/login"
@@ -21,15 +22,27 @@ function removeToken() {
 
 function checkAuth(location) {
   switch (location) {
-    case "/admin":
+    case routes.paths.admin:
       if (isAuthenticated()) return
 
-      return navigate("/auth/login")
+      return navigate(routes.login)
 
-    case "/auth":
+    case routes.paths.auth:
       if (!isAuthenticated()) return
 
-      return navigate("/admin/dashboard")
+      return navigate(routes.dashboard)
+  }
+}
+
+function handleAuthenticationError(error) {
+  if (!error) return
+
+  const statusCode = error.statusCode
+
+  switch (statusCode) {
+    case 401:
+      navigate(routes.logout)
+      break
   }
 }
 
@@ -40,4 +53,5 @@ export default {
   getToken,
   removeToken,
   checkAuth,
+  handleAuthenticationError,
 }
