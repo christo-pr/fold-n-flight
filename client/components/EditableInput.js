@@ -36,14 +36,25 @@ export default function EditableInput(props) {
     case "accuracy":
       return (
         <>
+          <datalist
+            id={`steps-for-${type}`}
+            className="uk-flex uk-flex-between"
+          >
+            {Array(11)
+              .fill()
+              .map((_, i) => (
+                <option key={i} value={i + 1}></option>
+              ))}
+          </datalist>
           <input
-            className="uk-range"
+            className={`range-${type}`}
             type="range"
             value={value}
-            min="0"
+            min="1"
             max="10"
             step="1"
-            onChange={(e) => onChange(type, e.target.value)}
+            list={`steps-for-${type}`}
+            onChange={(e) => onChange(type, +e.target.value)}
           ></input>
         </>
       )

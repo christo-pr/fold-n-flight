@@ -17,6 +17,30 @@ $black-color: #000000;
   color: #000;
 }
 
+@mixin input-range-thumb {
+  &::-webkit-slider-thumb {
+    @content();
+  }
+  &::-moz-range-thumb {
+    @content();
+  }
+  &::-ms-thumb {
+    @content();
+  }
+}
+
+@mixin input-range-track {
+  &::-webkit-slider-runnable-track {
+    @content;
+  }
+  &::-moz-range-track {
+    @content;
+  }
+  &::-ms-track {
+    @content;
+  }
+}
+
 // 4. Import UIkit.
 // @import "./node_modules/uikit/src/scss/uikit-theme.scss";
 
@@ -97,6 +121,84 @@ body {
     top: 30px;
     right: 15px;
     visibility: hidden;
+  }
+}
+
+datalist {
+  option {
+    position: relative;
+    background: white;
+    top: 20px;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    min-height: 12px;
+
+    &:first-of-type {
+      visibility: hidden;
+    }
+    &:last-of-type {
+      border-right: 0;
+    }
+  }
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 99%;
+  margin-top: 0;
+  height: 9px;
+
+  &:focus {
+    outline: none;
+  }
+
+  &.range-speed {
+    @include input-range-thumb {
+      background-color: yellowgreen;
+    }
+  }
+  &.range-glide {
+    @include input-range-thumb {
+      background-color: blueviolet;
+    }
+  }
+  &.range-accuracy {
+    @include input-range-thumb {
+      background-color: orangered;
+    }
+  }
+
+  @include input-range-track {
+    width: 100%;
+    height: 1.2em;
+    cursor: pointer;
+    border: 1px solid $black-background-color-2;
+    overflow: hidden;
+  }
+
+  @include input-range-thumb {
+    height: 12px;
+    width: 45px;
+    cursor: pointer;
+    -webkit-appearance: none;
+    border-bottom: 1px solid $black-background-color-2;
+    box-shadow: 0 0 0 red, -40px 0 0 red, -85px 0 0 red, -130px 0 0 red,
+      -175px 0 0 red, -220px 0 0 red, -265px 0 0 red, -310px 0 0 red,
+      -350px 0 0 red, -390px 0 0 red, -409px 0 0 red;
+    z-index: 2;
+  }
+
+  &::-ms-fill-lower {
+    background: #2a6495;
+    border: 0.2px solid #010101;
+    border-radius: 2.6px;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  }
+  &::-ms-fill-upper {
+    background: #3071a9;
+    border: 0.2px solid #010101;
+    border-radius: 2.6px;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
   }
 }
 

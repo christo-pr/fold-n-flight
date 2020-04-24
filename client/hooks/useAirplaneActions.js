@@ -25,7 +25,7 @@ function useAirplaneActions(airplane) {
         authService.handleAuthenticationError(data.error)
 
         if (data.error) {
-          setActionError(error)
+          setActionError(data.error)
           return
         }
 
